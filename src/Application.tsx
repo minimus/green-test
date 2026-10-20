@@ -24,19 +24,27 @@ const Application: FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [needListenNotifications, setNeedListenNotifications] = useState(false);
 
-  const onReady = useCallback((instance: string, token: string, phone: string) => {
-    setLoading(true);
-    setIdInstance(instance);
-    setApiTokenInstance(token);
-    setPhoneNumber(phone);
-    void openChat(instance, token, phone).then((res) => {
-      setExists(res.exist);
-      setChatId(res.chatId);
-      setContactInfo(res?.contactInfo ?? null);
-      setNeedListenNotifications(true);
-      setLoading(false);
-    });
-  }, []);
+  const onReady = useCallback(
+    (instance: string, token: string, phone: string) => {
+      setLoading(true);
+      setIdInstance(instance);
+      setApiTokenInstance(token);
+      setPhoneNumber(phone);
+      void openChat(instance, token, phone)
+        .then((res) => {
+          setExists(res.exist);
+          setChatId(res.chatId);
+          setContactInfo(res?.contactInfo ?? null);
+          setNeedListenNotifications(true);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+          enqueueSnackbar('Пользователя с таким номером телефона нет в MAX, или номер телефона не существует!', { variant: 'error' });
+        });
+    },
+    [enqueueSnackbar],
+  );
 
   const onDisconnectChat = useCallback(() => {
     setChatId('');
