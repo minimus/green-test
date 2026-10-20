@@ -1,6 +1,5 @@
 const path = require('path');
 
-//const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // eslint-disable-next-line no-undef
@@ -15,13 +14,12 @@ module.exports = {
   entry: { main: `${SRC_DIR}/index.tsx` },
   output: {
     path: BUILD_DIR,
-    //publicPath: '/',
     filename: 'js/[name].js',
     clean: true,
   },
   resolve: {
     modules: ['node_modules', 'src'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
   module: {

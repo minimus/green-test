@@ -1,7 +1,246 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap';
 
+:root {
+  /* Colors */
+  --tm-base-text-color-primary: rgb(255 255 255);
+  --tm-base-primary-color: #1976d2;
+  --tm-base-primary-hover-color: color-mix(in srgb, var(--tm-base-primary-color) 80%, black);
+  --tm-base-disabled-color: #dedede;
+  --tm-base-border-color: rgb(65 64 64);
+  --tm-base-alert-color: red;
+  --tm-base-alert-hover-color: color-mix(in srgb, var(--tm-base-alert-color) 80%, black);
+  --tm-base-background-color: rgb(15 15 18);
+  --tm-input-background-color: rgb(37 38 45);
+  --tm-base-tooltip-color: #002e45;
+
+  /* Sizes */
+  --tm-base-font-size: 15px;
+}
+
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: var(--tm-base-font-size);
+}
+
+#app-container {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  color: var(--tm-base-text-color-primary);
+  background-color: var(--tm-base-background-color);
+}
+
+.sign-in-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.sign-in-container .sign-in-root {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  padding: 16px;
+}
+
+.sign-in-container .sign-in-root label {
+  color: var(--tm-base-text-color-primary);
+}
+
+.sign-in-container .sign-in-root div.MuiInputBase-root.MuiOutlinedInput-root {
+  color: var(--tm-base-text-color-primary);
+  background-color: var(--tm-input-background-color);
+}
+
+.sign-in-container .sign-in-root .actions-panel {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.sign-in-container .sign-in-root .actions-panel button.Mui-disabled {
+    color: color-mix(in srgb, var(--tm-base-text-color-primary) 50%, black);
+    background-color: #373737;
+}
+
+div.MuiInputBase-root.MuiOutlinedInput-root .input-prefix-root {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  color: var(--tm-base-text-color-primary);
+}
+
+.tool-button-root {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--tm-base-primary-color);
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.chat-container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 80px 1fr 60px;
+  width: 100%;
+  height: 100%;
+}
+
+.chat-container .info-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--tm-base-border-color);
+}
+
+.chat-container .info-container .contact-info-root {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 700px;
+}
+
+.chat-container .info-container .contact-info-root :nth-child(2) {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.chat-container .messages-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 180px);
+  margin: 20px 0;
+  overflow: auto;
+}
+
+.chat-container .messages-container .messages-root {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.chat-container .messages-container .messages-root .incoming {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.chat-container .messages-container .messages-root .outgoing {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.chat-container .messages-container .message-container {
+  display: block;
+  padding: 16px;
+  color: var(--tm-base-text-color-primary);
+  background-color: var(--tm-input-background-color);
+  border-radius: 10px;
+}
+
+.chat-container .sender-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.chat-container .sender-container .sender-root {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 700px;
+}
+
+.chat-container .sender-container .sender-root label {
+  color: var(--tm-base-text-color-primary);
+}
+
+.chat-container .sender-container .sender-root div.MuiInputBase-root.MuiOutlinedInput-root {
+  color: var(--tm-base-text-color-primary);
+  background-color: var(--tm-input-background-color);
+}
+
+/* Tooltip styles */
+.tool-button-root.alert {
+  color: var(--tm-base-alert-color);
+}
+
+.tool-button-root:hover:not(:disabled) {
+  color: var(--tm-base-primary-hover-color);
+}
+
+.tool-button-root.alert:hover:not(:disabled) {
+  color: var(--tm-base-alert-hover-color);
+}
+
+.tool-button-root:disabled {
+  color: color-mix(in srgb, var(--tm-base-disabled-color) 50%, transparent);
+  cursor: default;
+}
+
+.tippy-box[data-theme~='antd'] {
+  background-color: var(--tm-base-tooltip-color);
+}
+
+.tippy-box[data-theme~='antd'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: var(--tm-base-tooltip-color);
+}
+
+.tippy-box[data-theme~='antd'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: var(--tm-base-tooltip-color);
+}
+
+.tippy-box[data-theme~='antd'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: var(--tm-base-tooltip-color);
+}
+
+.tippy-box[data-theme~='antd'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: var(--tm-base-tooltip-color);
 }
